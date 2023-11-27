@@ -53,7 +53,7 @@ function EmployeeEdit() {
 
 const updateEmployee=async(e)=>{
   e.preventDefault()
-  if (!Name || !address || !email || !gender || !addnumber || !pannumber || !pfnumber || !uannumber || !contnum || !mobile || !dob || !mtStatus || !esinum || !group) {
+  if (!Name || !address || !email || !gender || !addnumber || !pannumber || !pfnumber || !uannumber || !mobile || !dob || !mtStatus || !esinum || !group) {
     toast.error('Please fill in all the required fields');
     return;
   }
@@ -204,23 +204,7 @@ return (
                         />
                       </div>
                     </div>
-                    <div className="w-full lg:w-6/12 px-4">
-                      <div className="relative w-full mb-3">
-                        <label
-                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                          htmlfor="grid-password"
-                        >
-                          Contact Number
-                        </label>
-                        <input
-                          type="number"
-                          name="contnum"
-                          value={contnum}
-                          onChange={(e) => setContnum(e.target.value)}
-                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        />
-                      </div>
-                    </div>
+               
                     <div className="w-full lg:w-6/12 px-4">
                       <div className="relative w-full mb-3">
                         <label
