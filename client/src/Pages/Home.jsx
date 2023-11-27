@@ -40,7 +40,7 @@ function Home() {
           });
       
           if (confirmResult.isConfirmed) {
-            await axios.delete(`/vendor/catering/${id}`, {
+            await axios.delete(`/singleEmployee/${id}`, {
               headers: {
                 Authorization: `${admin.token}`,
               },
@@ -112,18 +112,18 @@ function Home() {
       {
           name:"View",
           selector:(row)=>
-          <NavLink to={`/vendor/singleCatering/${row._id}`}><button className='bg-green-900  text-white font-bold py-2 px-4 rounded'><i className='fa fa-eye' /></button></NavLink>
+          <NavLink to={`/singleEmployee/${row._id}`}><button className='bg-green-900  text-white font-bold py-2 px-4 rounded'><i className='fa fa-eye' />View</button></NavLink>
 
 
       },
       {
           name:"Edit",
           selector:(row)=>
-          <NavLink to={`/vendor/cateringEdit/${row._id}`}><button className='bg-green-900  text-white font-bold py-2 px-4 rounded'><i className='fa fa-pencil' /></button></NavLink>
+          <NavLink to={`/singleEmployee/${row._id}`}><button className='bg-green-900  text-white font-bold py-2 px-4 rounded'><i className='fa fa-pencil' />Edit</button></NavLink>
       },
       {
         name:"Remove",
-        selector:(row)=><button onClick={()=>handleDelete(row._id)} className='bg-red-900  text-white font-bold  py-2 px-4 rounded'><i class="fa-solid fa-trash-can"></i></button>
+        selector:(row)=><button onClick={()=>handleDelete(row._id)} className='bg-red-900  text-white font-bold  py-2 px-4 rounded'><i class="fa-solid fa-trash-can">Delete</i></button>
     },
       
       
