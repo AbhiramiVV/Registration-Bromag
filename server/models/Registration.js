@@ -29,27 +29,15 @@ const registrationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  mobile: {
+  pannumber: {
     type: String,
     required: true,
   },
-  mobile: {
+  pfnumber: {
     type: String,
     required: true,
   },
-  panmobile: {
-    type: String,
-    required: true,
-  },
-  pfmobile: {
-    type: String,
-    required: true,
-  },
-  uanmobile: {
-    type: String,
-    required: true,
-  },
-  contactnum: {
+  uannumber:{
     type: String,
     required: true,
   },

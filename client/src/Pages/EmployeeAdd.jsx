@@ -42,11 +42,9 @@ function EmployeeAdd() {
     formData.append("esinum", esinum);
     formData.append("group", group);
     formData.append("contnum", contnum);
+    formData.append('files',files)
 
-    for (let i = 0; i < files.length; i++) {
-      formData.append("files", files[i]);
-    }
-
+    
     try {
       const response = await axios.post("/addEmployee", formData, {
         headers: {
@@ -62,11 +60,43 @@ function EmployeeAdd() {
       console.error(error);
     }
   };
+  const readFileSync = (file) => {
+    return new Promise((resolve, reject) => {
+
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        const base64String = reader.result;
+        resolve(base64String);
+      };
+
+      reader.onerror = () => {
+        reject(new Error("Failed to read file"));
+      };
+
+      reader.readAsDataURL(file);
+    });
+  };
+
 
   const handleImageChange = (e) => {
     const selectedFiles = e.target.files;
-    setFiles([...selectedFiles]);
+  
+    if (selectedFiles.length > 0) {
+      const file = selectedFiles[0];
+  
+      readFileSync(file)
+        .then((base64String) => {
+            setFiles(base64String)
+        })
+        .catch((error) => {
+          console.error(error.message);
+        });
+    }
   };
+  
+
+
 
   return (
     <div className="flex gap-24">
@@ -149,6 +179,23 @@ function EmployeeAdd() {
                           name="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
+                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        />
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap mt-4">
+                      <div className="relative w-full px-4">
+                        <label
+                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                          htmlFor="grid-password"
+                        >
+                          Phone Number
+                        </label>
+                        <input
+                          type="number"
+                          name="number"
+                          value={mobile}
+                          onChange={(e) => setMobile(e.target.value)}
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         />
                       </div>
