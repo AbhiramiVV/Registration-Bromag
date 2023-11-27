@@ -40,12 +40,8 @@ function Home() {
           });
       
           if (confirmResult.isConfirmed) {
-            await axios.delete(`/singleEmployee/${id}`, {
-              headers: {
-                Authorization: `${admin.token}`,
-              },
-            });
-            await fetchVenue();
+            await axios.delete(`/removeEmployee/${id}`);
+            await fetchEmployee();
             toast.success('Catering deleted successfully.');
           }
         } catch (error) {

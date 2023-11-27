@@ -64,7 +64,6 @@ export  async function putEditEmployee(req,res){
     const Employeenew= await Registration.findByIdAndUpdate(req.params.id,req.body,{
       new:true,
     });
-    console.log(Employeenew,'/////////////');
     if(!Employeenew){
       return res.status(404).json({message:"Employe not found"})
     }
@@ -72,4 +71,15 @@ export  async function putEditEmployee(req,res){
   } catch (error) {
     res.json(500).json({message:error.message})
   }
+}
+export async function removeEmployee(req,res){
+  const id=req.params.id
+  try {
+    await Registration.findByIdAndDelete(id);
+    res.status(200).json({message:"Employee deleted"})
+  } catch (error) {
+    res.status(500).json();
+
+  }
+
 }

@@ -1,5 +1,5 @@
 import express from 'express'
-import { getEmployee, getSingleEmployee, postAddEmployee, putEditEmployee } from '../controllers/employeeController.js'
+import { getEmployee, getSingleEmployee, postAddEmployee, putEditEmployee, removeEmployee } from '../controllers/employeeController.js'
 import upload from '../config/multiUpload.js'
 import multipleUpload from '../config/multiUpload.js'
 
@@ -10,5 +10,5 @@ router.post('/addEmployee',postAddEmployee);
 router.get('/getEmployee',getEmployee)
 router.get('/singleEmployee/:id',getSingleEmployee);
 router.put('/employeeEdit/:id',putEditEmployee)
-
+router.delete('/removeEmployee/:id',removeEmployee)
 export default router
