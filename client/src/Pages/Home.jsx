@@ -4,11 +4,11 @@ import Basetable from '../Pages/Basetable';
 import ClipLoader from "react-spinners/ClipLoader";
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
-
+import axios from 'axios'
 
 function Home() {
  
-    const[catering,setCaterig]=useState([])
+    const[employee,setEmployee]=useState([])
     const [search, setsearch] = useState("");
     const [filteredAdmin, setFilteredAdmin] = useState([]);
   const [loading, setloading] = useState(true);
@@ -17,10 +17,8 @@ function Home() {
       try {
         const response = await axios.get('/getEmployee');
         const { message, data } = response.data;
-        console.log(response.data);
         console.log('Successful');
-        setCaterig(data);
-
+        setEmployee(data);
         setFilteredAdmin(data);
 
       setloading(false);
@@ -63,7 +61,7 @@ function Home() {
 
     useEffect(() => {
         setFilteredAdmin(
-            catering.filter((cat) =>
+            employee.filter((cat) =>
             cat.name.toLowerCase().includes(search.toLowerCase())
           )
         );
@@ -77,22 +75,34 @@ function Home() {
       },
       {
         name: 'Image',
-        // selector: (row) => (
-        //   <img
-        //     width={90}
-        //     height={90}
-        //     src={`http://localhost:5000/uploads/${row.image[0].files[0].filename}`}
-        //     alt={row.name}
-        //   />
-        // ),
+        selector: (row) => (
+          <img
+            width={90}
+            height={90}
+            src={row.image}
+            alt={row.name}
+          />
+        ),
       },
       {
-          name:"Name",
-          selector:(row)=>row.name,
+          name:" Staff Name",
+          selector:(row)=>row.Name,
           sortable:true
       },
       {
-        name:"Email",
+        name:"Phone Number",
+        selector:(row)=>row.mobile,
+        sortable:true
+
+      },
+      {
+        name:"Current address",
+        selector:(row)=>row.address,
+        sortable:true
+
+      },
+      {
+        name:"Email id",
         selector:(row)=>row.email,
         sortable:true
 
@@ -142,7 +152,7 @@ return (
             ) : (
                   <Basetable
                       columns={columns}
-                       data={catering}
+                       data={employee}
                       title={"Employee Management"}
                       pagination
                       fixedHeader

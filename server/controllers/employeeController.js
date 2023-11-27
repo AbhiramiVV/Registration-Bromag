@@ -3,7 +3,6 @@ import Registration from "../models/Registration.js";
 
 export async function postAddEmployee(req, res) {
   try {
-    console.log(req.body,'//////////');
     const { name,gender,address,email,mobile,addnumber,pannumber,pfnumber,uannumber,paddress,dob,mtStatus,esinum,group,files } = req.body;
     let picture;
     if (files) {
@@ -35,4 +34,17 @@ export async function postAddEmployee(req, res) {
     console.log(error.message);
 
   }
+}
+
+export async function getEmployee(req,res){
+  try {
+    const allEmployee=await Registration.find()
+    console.log(allEmployee);
+    res.status(200).json({data:allEmployee,verified:true});
+  } catch (error) {
+    res.status(401).json({ err: "nothing to display" });
+
+    
+  }
+
 }
