@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 
 import axios from 'axios'
 import {useNavigate,useParams } from 'react-router-dom';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function EmployeeEdit() {
   const {id}=useParams();
@@ -51,8 +53,14 @@ function EmployeeEdit() {
 
 const updateEmployee=async(e)=>{
   e.preventDefault()
+  if (!Name || !address || !email || !gender || !addnumber || !pannumber || !pfnumber || !uannumber || !contnum || !mobile || !dob || !mtStatus || !esinum || !group) {
+    toast.error('Please fill in all the required fields');
+    return;
+  }
   const updateEmploye={Name,address,email,gender,addnumber,pfnumber,uannumber,contnum,mobile,dob,mtStatus,esinum,group};
   await axios.put(`/employeeEdit/${id}`,updateEmploye)
+  toast.success('Employee updated successfully');
+
   Navigate("/")
   
 }
@@ -340,6 +348,7 @@ return (
         </section>
       </div>
     </div>
+    <ToastContainer />
   </div>
 );
 }
