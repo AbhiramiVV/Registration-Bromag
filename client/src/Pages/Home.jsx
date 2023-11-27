@@ -30,7 +30,7 @@ function Home() {
         try {
           const confirmResult = await Swal.fire({
             title: 'Are you sure?',
-            text: 'You are about to delete the venue. This action cannot be undone.',
+            text: 'You are about to delete the employee. This action cannot be undone.',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
@@ -42,11 +42,11 @@ function Home() {
           if (confirmResult.isConfirmed) {
             await axios.delete(`/removeEmployee/${id}`);
             await fetchEmployee();
-            toast.success('Catering deleted successfully.');
+            toast.success('Employee deleted successfully.');
           }
         } catch (error) {
           console.log(error);
-          toast.error('Failed to delete catering category.');
+          toast.error('Failed to delete employee category.');
         }
       };
        

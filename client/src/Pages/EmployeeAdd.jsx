@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function EmployeeAdd() {
   const [name, setName] = useState("");
@@ -25,7 +27,11 @@ function EmployeeAdd() {
 
   const addEmployee = async (e) => {
     e.preventDefault();
-    console.log(name);
+    if (!name || !gender || !address || !email || !mobile || !addnumber || !pannumber || !pfnumber || !uannumber || !paddress || !dob || !mtStatus || !esinum || !group || !contnum || !files) {
+    
+      toast.error("Please fill in all the required fields");
+      return;
+    }
     const formData = new FormData();
     formData.append("name", name);
     formData.append("gender", gender);
@@ -131,7 +137,7 @@ function EmployeeAdd() {
                         />
                       </div>
                     </div>
-                    <div className="relative">
+                    <div className="w-full lg:w-6/12 px-4">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -183,7 +189,7 @@ function EmployeeAdd() {
                         />
                       </div>
                     </div>
-                    <div className="flex flex-wrap mt-4">
+                    <div className="w-full lg:w-6/12 px-4">
                       <div className="relative w-full px-4">
                         <label
                           className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -200,7 +206,7 @@ function EmployeeAdd() {
                         />
                       </div>
                     </div>
-                    <div className="flex flex-wrap mt-4">
+                    <div className="w-full lg:w-6/12 px-4">
                       <div className="relative w-full px-4">
                         <label
                           className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -217,7 +223,7 @@ function EmployeeAdd() {
                         />
                       </div>
                     </div>
-                    <div className="flex flex-wrap mt-4">
+                    <div className="w-full lg:w-6/12 px-4">
                       <div className="relative w-full px-4">
                         <label
                           className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -234,7 +240,7 @@ function EmployeeAdd() {
                         />
                       </div>
                     </div>
-                    <div className="flex flex-wrap mt-4">
+                    <div className="w-full lg:w-6/12 px-4">
                       <div className="relative w-full px-4">
                         <label
                           className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -251,7 +257,7 @@ function EmployeeAdd() {
                         />
                       </div>
                     </div>
-                    <div className="flex flex-wrap mt-4">
+                    <div className="w-full lg:w-6/12 px-4">
                       <div className="relative w-full px-4">
                         <label
                           className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -269,7 +275,6 @@ function EmployeeAdd() {
                       </div>
                     </div>
 
-                    <div className="flex flex-wrap mt-4">
                       <div className="w-full lg:w-6/12 px-4">
                         <div className="relative w-full mb-3">
                           <label
@@ -287,7 +292,9 @@ function EmployeeAdd() {
                           />
                         </div>
                       </div>
-                      <div className="relative">
+                      <div className="w-full lg:w-6/12 px-8">
+
+                    
                         <label
                           className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                           htmlFor="dob"
@@ -302,7 +309,6 @@ function EmployeeAdd() {
                           onChange={(e) => setDob(e.target.value)}
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         />
-                      </div>
 
                       <div className="relative w-full mb-3">
                         <label
@@ -400,6 +406,8 @@ function EmployeeAdd() {
                 </div>
               </div>
             </form>
+            <ToastContainer />
+
           </div>
         </section>
       </div>
