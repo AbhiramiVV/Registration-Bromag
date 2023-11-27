@@ -50,13 +50,26 @@ export async function getEmployee(req,res){
 
 export async function getSingleEmployee(req,res){
   try {
-    console.log(req.params);
     const {id}=req.params;
     const employeeSingle=await Registration.findById({_id:id});
-    console.log(employeeSingle);
     res.status(201).json(employeeSingle)
   } catch (error) {
     console.log("error occured in single employee view");
     
+  }
+}
+
+export  async function putEditEmployee(req,res){
+  try {
+    const Employeenew= await Registration.findByIdAndUpdate(req.params.id,req.body,{
+      new:true,
+    });
+    console.log(Employeenew,'/////////////');
+    if(!Employeenew){
+      return res.status(404).json({message:"Employe not found"})
+    }
+    res.json({data:Employeenew,verified:true})
+  } catch (error) {
+    res.json(500).json({message:error.message})
   }
 }

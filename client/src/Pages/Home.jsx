@@ -119,7 +119,7 @@ function Home() {
       {
           name:"Edit",
           selector:(row)=>
-          <NavLink to={`/singleEmployee/${row._id}`}><button className='bg-green-900  text-white font-bold py-2 px-4 rounded'><i className='fa fa-pencil' />Edit</button></NavLink>
+          <NavLink to={`/editEmployee/${row._id}`}><button className='bg-green-900  text-white font-bold py-2 px-4 rounded'><i className='fa fa-pencil' />Edit</button></NavLink>
       },
       {
         name:"Remove",
@@ -140,7 +140,7 @@ return (
               <div className="flex justify-end">
               <button class="bg-green-900  text-white font-bold py-2 px-4 rounded-full mt-5 mb-5">
               <NavLink style={{zIndex:'9999',position:'relative'}} to="/add">
-          ADD NEW CATERING
+          ADD NEW EMPLOYEES
         </NavLink>
         </button>
             
