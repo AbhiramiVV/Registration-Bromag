@@ -13,26 +13,21 @@ function Home() {
     const [filteredAdmin, setFilteredAdmin] = useState([]);
   const [loading, setloading] = useState(true);
   
-    // const fetchVenue = async () => {
-    //   try {
-    //     console.log(catering);
-    //     const response = await axios.get('/vendor/catering', {
-    //       headers: {
-    //           Authorization: `${admin.token}`,
-    //       },
-    //     });
-    //     const { message, data } = response.data;
-    //     console.log(response.data);
-    //     console.log('Successful');
-    //     setCaterig(data);
+    const fetchEmployee= async () => {
+      try {
+        const response = await axios.get('/getEmployee');
+        const { message, data } = response.data;
+        console.log(response.data);
+        console.log('Successful');
+        setCaterig(data);
 
-    //     setFilteredAdmin(data);
+        setFilteredAdmin(data);
 
-    //   setloading(false);
-    //   } catch (error) {
-    //     console.error('Error fetching catering view:', error);
-    //   }
-    // };
+      setloading(false);
+      } catch (error) {
+        console.error('Error fetching catering view:', error);
+      }
+    };
     const handleDelete = async (id) => {
         try {
           const confirmResult = await Swal.fire({
@@ -61,9 +56,9 @@ function Home() {
         }
       };
        
-    // useEffect(() => {
-    //   fetchVenue();
-    // }, []);
+    useEffect(() => {
+      fetchEmployee();
+    }, []);
    
 
     useEffect(() => {
