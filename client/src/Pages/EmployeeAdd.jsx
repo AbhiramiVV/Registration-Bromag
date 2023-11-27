@@ -61,6 +61,9 @@ function EmployeeAdd() {
       console.log(response);
       if (response.data.message) {
         navigate("/");
+        toast.success('Employee added successfully.');
+
+
       }
     } catch (error) {
       console.error(error);
