@@ -1,7 +1,5 @@
 import express from 'express'
 import { getEmployee, getSingleEmployee, postAddEmployee, putEditEmployee, removeEmployee } from '../controllers/employeeController.js'
-import upload from '../config/multiUpload.js'
-import multipleUpload from '../config/multiUpload.js'
 
 
 const router=express.Router()
